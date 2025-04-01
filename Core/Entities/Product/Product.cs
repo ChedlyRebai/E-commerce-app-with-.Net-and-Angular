@@ -14,6 +14,6 @@ public class Product:BaseEntity<int>
     [ForeignKey(nameof(CategoryId))]
     public virtual Category Category { get; set; } = new Category();
      
-    public virtual ICollection<Photo> photos {get; set;}=new HashSet<Photo>();
+    public virtual ICollection<Photo> Photos {get; set;}=new HashSet<Photo>();
 
 }
