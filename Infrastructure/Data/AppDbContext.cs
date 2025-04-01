@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using Core.Entities.Product;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
 
