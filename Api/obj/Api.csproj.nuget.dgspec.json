@@ -1,17 +1,111 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj": {}
+    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj": {
+    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj",
-        "projectName": "Api",
-        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\API\\API.csproj",
+        "projectName": "API",
+        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\API\\API.csproj",
         "packagesPath": "C:\\Users\\chedl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\obj\\",
+        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\API\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chedl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.2.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0-preview.3.efcore.9.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\chedl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chedl\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,10 +137,99 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\chedl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chedl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.2.0, )"
+            },
+            "MySql.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[9.0.0-preview.3.efcore.9.0.0, )"
             }
           },
           "imports": [
@@ -61,9 +244,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
