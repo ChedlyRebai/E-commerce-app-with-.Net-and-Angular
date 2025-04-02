@@ -12,6 +12,7 @@ public static class InfrastructureRegistration
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<ICategoryReppository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IPhotoRepository, PhotoRepository>();
         return services;
     }
 }
