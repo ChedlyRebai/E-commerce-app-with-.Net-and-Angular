@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "xX6KcWUw8D8=",
+  "dgSpecHash": "huy2xR4skvs=",
   "success": true,
   "projectFilePath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\chedl\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.3\\microsoft.aspnetcore.openapi.9.0.3.nupkg.sha512",
+    "C:\\Users\\chedl\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
   "logs": []
 }
