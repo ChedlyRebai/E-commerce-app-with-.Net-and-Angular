@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Core.Interfaces;
 
-public interface IGenericInterface<T> where T : class
+public interface IGenericRepository<T> where T : class
 {
     Task<IReadOnlyList<T>> GetAllAsync();
     Task<IReadOnlyList<T>> GetAllAsync(params Expression<Func<T,object>>[] includes);

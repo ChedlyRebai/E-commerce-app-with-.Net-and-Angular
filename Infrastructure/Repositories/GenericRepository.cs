@@ -7,7 +7,7 @@ using Microsoft.Identity.Client;
 
 namespace Infrastructure.Repositories;
 
-public class GenericRepository<T> : IGenericInterface<T> where T : class
+public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly AppDbContext _context;
 
