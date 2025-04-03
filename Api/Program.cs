@@ -20,12 +20,6 @@ var app = builder.Build();
 //         connectionString, ServerVersion.AutoDetect(connectionString)
 //     ));
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 
-
-app.UseHttpsRedirection();
 
 app.Run();

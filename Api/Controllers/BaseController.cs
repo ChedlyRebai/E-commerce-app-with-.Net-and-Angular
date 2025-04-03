@@ -8,11 +8,10 @@ namespace Api.Controllers
     [ApiController]
     public class BaseController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        protected readonly IUnitOfWork _unitOfWork;
         public BaseController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
-            
         }
     }
 }
