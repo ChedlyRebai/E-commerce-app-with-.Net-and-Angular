@@ -15,13 +15,17 @@ namespace Api.Controllers.Mapping
         public async Task<IActionResult> getAll(){
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync();
+                var products = await _unitOfWork.ProductRepository.GetAllAsync(
+                    x=>x.Category,
+                    x=>x.Photos
+                );
+
                 if (products is null)
                 {
                     return BadRequest(new ResponseAPI(400));
                 }
-                else
-                {
+
+                else{
                     return Ok(products);
                 }
             }
