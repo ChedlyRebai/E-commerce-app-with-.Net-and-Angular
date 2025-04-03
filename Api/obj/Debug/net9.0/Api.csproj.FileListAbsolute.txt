@@ -177,3 +177,6 @@ C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\obj\Debug\net9.0\refi
 C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\obj\Debug\net9.0\Api.pdb
 C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\obj\Debug\net9.0\Api.genruntimeconfig.cache
 C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\obj\Debug\net9.0\ref\Api.dll
+C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll

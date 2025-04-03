@@ -24,7 +24,6 @@ namespace Api.Controllers
                 {
                     return Ok(categories);
                 }
-
             }
             catch (System.Exception ex)
             {
