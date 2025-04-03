@@ -1,5 +1,6 @@
 using Api.Helper;
 using AutoMapper;
+using Core.DTO;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +20,15 @@ namespace Api.Controllers.Mapping
                     x=>x.Category,
                     x=>x.Photos
                 );
+                var results = _mapper.Map<List<ProductDTO>>(products);
 
-                if (products is null)
+                if (results is null)
                 {
                     return BadRequest(new ResponseAPI(400));
                 }
 
                 else{
-                    return Ok(products);
+                    return Ok(results);
                 }
             }
             catch (System.Exception ex)
