@@ -1,3 +1,4 @@
+using AutoMapper;
 using Core.DTO;
 using Core.Entities.Product;
 using Core.Interfaces;
@@ -8,8 +9,9 @@ namespace Api.Controllers
 {
     public class CategoryController : BaseController
     {
-        public CategoryController(IUnitOfWork unitOfWork) : base(unitOfWork)
+        public CategoryController(IUnitOfWork unitOfWork,IMapper mapper) : base(unitOfWork,mapper)
         {
+
         }
 
         [HttpGet("get-all")]
@@ -53,18 +55,18 @@ namespace Api.Controllers
             }
 
         }
-        
+
         [HttpPost("add")]
         public async Task<IActionResult> add(CategoryDTO categoryDTO)
         {
             try
             {
-                Category category = new Category()
-                {
-                    Name = categoryDTO.Name,
-                    Description = categoryDTO.Description,
-
-                };
+                // Category category = new Category()
+                // {
+                //     Name = categoryDTO.Name,
+                //     Description = categoryDTO.Description,
+                // };
+                var category =_mapper.Map<Category>(categoryDTO);
                 await _unitOfWork.CategoryReppository.AddAsync(category);
                 return Ok(category);
             }
@@ -76,17 +78,16 @@ namespace Api.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> update(UpdateCategoryDTO categoryDTO)
+        public async Task<IActionResult> update(UpdateCategoryDTO updatecategoryDTO)
         {
-            try
-            {
-                var category = new Category()
-                {
-                    Id = categoryDTO.id,
-                    Name = categoryDTO.Name,
-                    Description = categoryDTO.Description,
-                };
-
+            try{
+                // var category = new Category()
+                // {
+                //     Id = categoryDTO.id,
+                //     Name = categoryDTO.Name,
+                //     Description = categoryDTO.Description,
+                // };
+                var category= _mapper.Map<Category>(updatecategoryDTO);
                 await _unitOfWork.CategoryReppository.UpdateAsync(category);
                 return Ok(new { message = "Category updated successfully", category });
             }
