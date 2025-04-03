@@ -53,6 +53,7 @@ namespace Api.Controllers
             }
 
         }
+        
         [HttpPost("add")]
         public async Task<IActionResult> add(CategoryDTO categoryDTO)
         {
@@ -73,6 +74,7 @@ namespace Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("update")]
         public async Task<IActionResult> update(UpdateCategoryDTO categoryDTO)
         {
@@ -93,6 +95,7 @@ namespace Api.Controllers
                 return BadRequest("Error updating category.");
             }
         }
+
         [HttpDelete("delete-category/{id}")]
         public async Task<IActionResult> delete(int id){
             try
