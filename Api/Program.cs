@@ -1,5 +1,4 @@
 using Infrastructure;
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +14,7 @@ builder.Services.AddControllers();
 
 // Register infrastructure services
 builder.Services.infrastructureRegistration(builder.Configuration);
-
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {

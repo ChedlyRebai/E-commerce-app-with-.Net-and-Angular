@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "W8khVGPpae8=",
+  "dgSpecHash": "yx4vEmpx5y0=",
   "success": true,
   "projectFilePath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Api\\Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\chedl\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\chedl\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
@@ -22,7 +24,7 @@
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.8.0\\microsoft.codeanalysis.csharp.workspaces.4.8.0.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.8.0\\microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.8.0\\microsoft.codeanalysis.workspaces.msbuild.4.8.0.nupkg.sha512",
-    "C:\\Users\\chedl\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\chedl\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.6\\microsoft.data.sqlclient.5.1.6.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.1.1\\microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512",
     "C:\\Users\\chedl\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.3\\microsoft.entityframeworkcore.9.0.3.nupkg.sha512",
