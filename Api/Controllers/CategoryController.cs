@@ -1,3 +1,4 @@
+using Api.Helper;
 using AutoMapper;
 using Core.DTO;
 using Core.Entities.Product;
@@ -22,7 +23,7 @@ namespace Api.Controllers
                 var categories = await _unitOfWork.CategoryReppository.GetAllAsync();
                 if (categories is null)
                 {
-                    return NotFound("No categories found.");
+                    return BadRequest(new ResponseAPI(400));
                 }
                 else
                 {
@@ -31,7 +32,7 @@ namespace Api.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ResponseAPI(400, ex.Message));
             }
         }
         [HttpGet("get-by-id/{id}")]
@@ -51,7 +52,7 @@ namespace Api.Controllers
             }
             catch (System.Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new ResponseAPI(400, ex.Message));
             }
 
         }
@@ -73,7 +74,7 @@ namespace Api.Controllers
             catch (System.Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return BadRequest(new ResponseAPI(400, ex.Message));
             }
         }
 
@@ -93,7 +94,7 @@ namespace Api.Controllers
             }
             catch (System.Exception)
             {
-                return BadRequest("Error updating category.");
+                return BadRequest(new ResponseAPI(400, "Category not found."));
             }
         }
 
@@ -102,11 +103,11 @@ namespace Api.Controllers
             try
             {
                 await _unitOfWork.CategoryReppository.DeleteAsync(id);
-                return Ok(new { message = "Category deleted successfully" });
+                return Ok(new ResponseAPI(200,"Category deleted successfully."));
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return BadRequest("Error deleting category.");
+                return BadRequest(new ResponseAPI(400, ex.Message));
             }
         }
     }
