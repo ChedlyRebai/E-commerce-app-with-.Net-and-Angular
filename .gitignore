@@ -2,3 +2,19 @@ obj
 bin
 *.db
 appsettings.json
+
+# Ignore build output folders
+bin/
+obj/
+
+# Ignore NuGet packages
+.nuget/packages/
+packages/
+*.nupkg
+*.snupkg
+*.nuspec
+*.symbols.nupkg
+*.snupkg
+*.nupkg
+*.symbols.nupkg
+*.snupkg
