@@ -21,9 +21,10 @@ public static class InfrastructureRegistration
 
         services.AddScoped<IUnitOfWork ,UnitOfWork>();
         services.AddDbContext<AppDbContext>(options=>{
-            options.UseMySql(configuration.GetConnectionString("Ecommerce"),
+            options.UseMySql(
+            configuration.GetConnectionString("Ecommerce"),
             ServerVersion.AutoDetect(configuration.GetConnectionString("Ecommerce")));
-
+        
         });
         return services;
     }

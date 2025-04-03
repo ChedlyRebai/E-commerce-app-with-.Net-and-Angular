@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250402124957_InitialCre")]
-    partial class InitialCre
+    [Migration("20250402141239_Initiald_Netc")]
+    partial class Initiald_Netc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,14 @@ namespace Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Description = "Description for Category 1",
+                            Name = "Category 1"
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Product.Photo", b =>
@@ -99,6 +107,17 @@ namespace Infrastructure.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 2,
+                            Description = "Description 1",
+                            Name = "Product 1",
+                            Price = 10000m,
+                            Stock = 10
+                        });
                 });
 
             modelBuilder.Entity("Core.Entities.Product.Photo", b =>

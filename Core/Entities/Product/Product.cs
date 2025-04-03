@@ -12,7 +12,7 @@ public class Product:BaseEntity<int>
     public int CategoryId { get; set; }
 
     [ForeignKey(nameof(CategoryId))]
-    public virtual Category Category { get; set; } = new Category();
+    public virtual Category Category { get; set; } 
      
     public virtual ICollection<Photo> Photos {get; set;}=new HashSet<Photo>();
 
