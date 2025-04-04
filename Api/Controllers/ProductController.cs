@@ -40,16 +40,29 @@ namespace Api.Controllers.Mapping
         public async Task<IActionResult> getById(int id){
             try
             {
-                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id);
-                if(product is null){
+                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id,x=>x.Category,x=>x.Photos);
+                var result = _mapper.Map<ProductDTO>(product);
+                if(result is null){
                     return BadRequest(new ResponseAPI(400, $"Product with id {id} not found."));
                 }
-                return Ok(product);
+                return Ok(result);
             }
             catch (System.Exception ex)
             {
         
                 return BadRequest(new ResponseAPI(400,ex.Message));
+            }
+        }
+
+        [HttpPost("Add-Product")]
+        public async Task<IActionResult> AddProduct([FromBody] ProductDTO productDTO){
+            try
+            {
+
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new ResponseAPI(400, ex.Message));
             }
         }
     }
