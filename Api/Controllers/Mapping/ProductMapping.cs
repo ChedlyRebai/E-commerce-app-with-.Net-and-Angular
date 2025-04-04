@@ -13,6 +13,10 @@ public class ProductMapping:Profile
         ().ForMember(
             x=>x.CategoryName, 
             op=>op.MapFrom(src=>src.Category.Name))
+        .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos))
+        .ReverseMap();
+        CreateMap<Photo,PhotoDTO>()
+        .ForMember(x=> x.ImageName, opt=> opt.MapFrom(src=>src.Url) )
         .ReverseMap();
     }
 }
