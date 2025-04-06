@@ -52,7 +52,6 @@ namespace Api.Controllers.Mapping
             }
             catch (System.Exception ex)
             {
-        
                 return BadRequest(new ResponseAPI(400,ex.Message));
             }
         }
@@ -81,6 +80,21 @@ namespace Api.Controllers.Mapping
             catch (System.Exception ex)
             {   
                 return BadRequest(new ResponseAPI(400,ex.Message));
+            }
+        }
+        [HttpDelete("Delete-product")]
+        public async Task<IActionResult> delete(int Id){
+            try
+            {
+                var product=await _unitOfWork.ProductRepository.GetByIdAsync(Id,x=>x.Category,x=>x.Photos);
+
+                await _unitOfWork.ProductRepository.DeleteAsync(product.Id);
+                return Ok(new ResponseAPI(200,"Product deleted successfully."));
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
             }
         }
     }

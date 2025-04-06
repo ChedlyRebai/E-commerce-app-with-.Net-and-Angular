@@ -39,18 +39,19 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
-    public async  Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO)
-    {
-        if(updateProductDTO == null) return false;
-        
-        var product = await context.Products.Include(m=>m.Category)
-        .Include(m=>m.Photos)
-        .FirstOrDefaultAsync(m=>m.Id==updateProductDTO.Id);
 
-        if(product == null) return false;
+    public async Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO)
+    {
+        if (updateProductDTO == null) return false;
+
+        var product = await context.Products.Include(m => m.Category)
+        .Include(m => m.Photos)
+        .FirstOrDefaultAsync(m => m.Id == updateProductDTO.Id);
+
+        if (product == null) return false;
 
         mapper.Map(updateProductDTO, product);
-        var finndPhoto=await context.Photos.Where(m=>m.ProductId==updateProductDTO.Id).ToListAsync();
+        var finndPhoto = await context.Photos.Where(m => m.ProductId == updateProductDTO.Id).ToListAsync();
 
         foreach (var item in finndPhoto)
         {
@@ -60,7 +61,8 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         await context.SaveChangesAsync();
         var ImagePath = await imageMangeService.AddImageAsync(updateProductDTO.Photos, updateProductDTO.Name);
         var photo = ImagePath.Select(
-            path => new Photo(){
+            path => new Photo()
+            {
                 Url = path,
                 ProductId = product.Id
             }
@@ -69,4 +71,17 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         await context.SaveChangesAsync();
         return true;
     }
+
+    public async Task DeleteAsync(Product product)
+    {
+        var photos=await context.Photos.Where(m=>m.ProductId==product.Id)
+         .ToListAsync();
+         foreach (var item in photos)
+         {
+            imageMangeService.DeleteImageAsync(item.Url);
+         }
+         context.Products.Remove(product);
+         await context.SaveChangesAsync();
+    }
+
 }

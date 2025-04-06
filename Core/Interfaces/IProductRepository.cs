@@ -9,4 +9,6 @@ public interface IProductRepository:IGenericRepository<Product>
 {
     public Task<bool> AddAsync(AddProductDTo addProductDTO);
     Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO);
+
+    Task DeleteAsync(Product product);
 }
