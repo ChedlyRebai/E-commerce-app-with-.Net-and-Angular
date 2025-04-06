@@ -26,7 +26,7 @@ public record AddProductDTo{
     public string Description { get; set; } = string.Empty;
     public decimal NewPrice { get; set; }
     public decimal OldPrice { get; set; }
-    public IFormFileCollection Photo {get; set;} 
+    public IFormFileCollection Photos {get; set;} 
 
-    
+
 }

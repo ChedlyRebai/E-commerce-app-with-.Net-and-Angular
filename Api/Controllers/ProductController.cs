@@ -9,6 +9,7 @@ namespace Api.Controllers.Mapping
 {
     public class ProductController : BaseController
     {
+        
         public ProductController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
         }
@@ -55,10 +56,11 @@ namespace Api.Controllers.Mapping
         }
 
         [HttpPost("Add-Product")]
-        public async Task<IActionResult> AddProduct([FromBody] ProductDTO productDTO){
+        public async Task<IActionResult> Add(AddProductDTo addproductDTO){
             try
             {
-
+                await _unitOfWork.ProductRepository.AddAsync(addproductDTO);
+                return Ok(new ResponseAPI(201, "Product added successfully."));
             }
             catch (System.Exception ex)
             {
