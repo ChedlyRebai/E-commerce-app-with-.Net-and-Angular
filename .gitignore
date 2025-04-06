@@ -12,6 +12,13 @@ obj/
 
 **/[Bb]in/
 **/[Oo]bj/
+Api/bin/
+Api/obj/
+Core/bin/
+Core/obj/
+Infrastructure/bin/
+Infrastructure/obj/
+
 *.user
 *.suo
 *.userosscache
