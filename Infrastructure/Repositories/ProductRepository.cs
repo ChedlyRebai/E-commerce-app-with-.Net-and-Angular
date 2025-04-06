@@ -48,5 +48,25 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         .FirstOrDefaultAsync(m=>m.Id==updateProductDTO.Id);
 
         if(product == null) return false;
+
+        mapper.Map(updateProductDTO, product);
+        var finndPhoto=await context.Photos.Where(m=>m.ProductId==updateProductDTO.Id).ToListAsync();
+
+        foreach (var item in finndPhoto)
+        {
+            imageMangeService.DeleteImageAsync(item.Url);
+        }
+        context.Photos.RemoveRange(finndPhoto);
+        await context.SaveChangesAsync();
+        var ImagePath = await imageMangeService.AddImageAsync(updateProductDTO.Photos, updateProductDTO.Name);
+        var photo = ImagePath.Select(
+            path => new Photo(){
+                Url = path,
+                ProductId = product.Id
+            }
+        ).ToList();
+        await context.Photos.AddRangeAsync(photo);
+        await context.SaveChangesAsync();
+        return true;
     }
 }
