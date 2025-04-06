@@ -28,3 +28,9 @@ public record AddProductDTo{
     public decimal OldPrice { get; set; }
     public IFormFileCollection Photos {get; set;} 
 }
+
+
+public record UpdateProductDTO:AddProductDTo
+{
+    public int Id { get; set; }
+}

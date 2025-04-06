@@ -69,5 +69,16 @@ namespace Api.Controllers.Mapping
                 return BadRequest(new ResponseAPI(400, ex.Message));
             }
         }
+        [HttpPut("update-product")]
+        public async Task<IActionResult> UpdateProduct(){
+            try
+            {
+                
+            }
+            catch (System.Exception ex)
+            {   
+                return BadRequest(new ResponseAPI(400,ex.Message));
+            }
+        }
     }
 }

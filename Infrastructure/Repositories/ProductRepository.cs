@@ -4,6 +4,7 @@ using Core.DTO;
 using Core.Entities.Product;
 using Core.Services;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 
@@ -36,5 +37,16 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         await context.Photos.AddRangeAsync(photo);
         await context.SaveChangesAsync();
         return true;
+    }
+
+    public async  Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO)
+    {
+        if(updateProductDTO == null) return false;
+        
+        var product = await context.Products.Include(m=>m.Category)
+        .Include(m=>m.Photos)
+        .FirstOrDefaultAsync(m=>m.Id==updateProductDTO.Id);
+
+        if(product == null) return false;
     }
 }
