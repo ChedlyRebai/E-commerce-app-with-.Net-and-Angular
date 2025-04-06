@@ -16,6 +16,11 @@ Api/bin/
 Api/obj/
 Core/bin/
 Core/obj/
+*.sln.ide
+*.dll
+*.pdb
+*.cache
+*.json
 Infrastructure/bin/
 Infrastructure/obj/
 
