@@ -41,7 +41,9 @@ namespace Api.Controllers.Mapping
         public async Task<IActionResult> getById(int id){
             try
             {
-                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id,x=>x.Category,x=>x.Photos);
+                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id,x=>x.Category
+                ,x=>x.Photos
+                );
                 var result = _mapper.Map<ProductDTO>(product);
                 if(result is null){
                     return BadRequest(new ResponseAPI(400, $"Product with id {id} not found."));
