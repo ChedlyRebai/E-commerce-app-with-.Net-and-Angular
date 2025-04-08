@@ -39,6 +39,38 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string sort)
+    {
+        var query = context.Products
+        .Include(m => m.Category)
+        .Include(m => m.Photos)
+        .AsNoTracking();
+
+        if (!string.IsNullOrEmpty(sort))
+        {
+            switch (sort)
+            {
+                case "PriceAsn":
+                    query = query.OrderBy(m => m.NewPrice);
+                    break;
+                case "PriceDsn":
+                    query = query.OrderByDescending(m => m.NewPrice);
+                    break;
+                case "NameAsn":
+                    query = query.OrderBy(m => m.Name);
+                    break;
+                case "NameDsn":
+                    query = query.OrderByDescending(m => m.Name);
+                    break;
+                default:
+                    query = query.OrderBy(m => m.Name);
+                    break;
+
+            }
+        }
+        var result =mapper.Map<List<ProductDTO>>(query);
+        return result;
+    }
 
     public async Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO)
     {
@@ -74,14 +106,14 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
 
     public async Task DeleteAsync(Product product)
     {
-        var photos=await context.Photos.Where(m=>m.ProductId==product.Id)
+        var photos = await context.Photos.Where(m => m.ProductId == product.Id)
          .ToListAsync();
-         foreach (var item in photos)
-         {
+        foreach (var item in photos)
+        {
             imageMangeService.DeleteImageAsync(item.Url);
-         }
-         context.Products.Remove(product);
-         await context.SaveChangesAsync();
+        }
+        context.Products.Remove(product);
+        await context.SaveChangesAsync();
     }
 
 }
