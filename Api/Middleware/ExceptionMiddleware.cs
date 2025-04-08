@@ -75,4 +75,9 @@ public class ExceptionMiddleware
         return true; 
     }
 
+    private void applySecurite(HttpContext context){
+        context.Response.Headers["X-Content-Type-Options"]= "nosniff";
+        context.Response.Headers["X-Frame-Options"] = "DENY";
+        context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
+    }
 }
