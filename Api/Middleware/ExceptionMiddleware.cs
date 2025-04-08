@@ -24,6 +24,7 @@ public class ExceptionMiddleware
     {
         try
         {
+            applySecurite(context);
             
             if(IsRequestAllowed(context) == false){
                 context.Response.StatusCode = (int)HttpStatusCode.TooManyRequests;
