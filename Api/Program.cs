@@ -1,3 +1,4 @@
+using Api.Middleware;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,9 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseStatusCodePagesWithRedirects("/errors/{0}");
+
 // var connectionString = builder.Configuration.GetConnectionString("GameStore");
 // builder.Services.AddDbContext<AppDbContext>(options =>
 //     options.UseMySql(
