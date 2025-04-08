@@ -10,6 +10,7 @@ namespace Api.Controllers
     {
         public BugController(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
+            
         }
     }
 }
