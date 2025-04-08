@@ -29,10 +29,17 @@ namespace Api.Controllers
             var categoryToReturn = _mapper.Map<CategoryDTO>(category);
             return Ok(categoryToReturn);
         }
-        [HttpGet("bad-request")]
+        [HttpGet("bad-request/{id}")]
         public IActionResult GetBadRequest(int id){
             return Ok();
         }
+
+
+        [HttpGet("bad-request")]
+        public IActionResult GetBadRequest(){
+            return BadRequest();
+        }
+
 
 
     }
