@@ -25,6 +25,8 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Set Swagger UI at the root (optional)
     });
 }
+
+app.UseStatusCodePagesWithRedirects("/errors/{0}");
 // var connectionString = builder.Configuration.GetConnectionString("GameStore");
 // builder.Services.AddDbContext<AppDbContext>(options =>
 //     options.UseMySql(
