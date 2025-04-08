@@ -24,6 +24,13 @@ public class ExceptionMiddleware
     {
         try
         {
+            
+            if(IsRequestAllowed(context) == false){
+                context.Response.StatusCode = (int)HttpStatusCode.TooManyRequests;
+                context.Response.ContentType = "application/json";
+                var response = new ApiException((int)HttpStatusCode.TooManyRequests, "Rate limit exceeded", "You have exceeded the number of requests allowed. Please try again later.");
+                await context.Response.WriteAsJsonAsync(response);
+            }   
             await _next(context);
         }
         catch (Exception ex)
@@ -44,9 +51,10 @@ public class ExceptionMiddleware
         var ip = context.Connection.RemoteIpAddress;
         var cachKey = $"Rate:{ip}";
         var dateNow = DateTime.Now;
-
+        Console.WriteLine("Request Path: " + context.Request.Path);
         var (timesTamp, count) = _cache.GetOrCreate(cachKey, entry =>
         {
+
             entry.AbsoluteExpirationRelativeToNow = _rateLimitWindow;
             return (timesTamp: dateNow, count: 0);
         });
@@ -57,7 +65,7 @@ public class ExceptionMiddleware
             {
                 return false;
             }
-            _cache.Set(cachKey, (timesTamp, count + 1), _rateLimitWindow);
+            _cache.Set(cachKey, (timesTamp, count += 1), _rateLimitWindow);
 
         }
         else
