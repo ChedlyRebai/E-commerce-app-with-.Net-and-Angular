@@ -23,6 +23,7 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         this.imageMangeService = imageMangeService;
     }
 
+
     public async Task<bool> AddAsync(AddProductDTo addProductDTO)
     {
         if (addProductDTO == null) return false;
@@ -40,20 +41,30 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
-    public async Task<IEnumerable<ProductDTO>> GetAllAsync(ProductParam productParam )
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync(ProductParam productParam)
     {
         var query = context.Products
         .Include(m => m.Category)
         .Include(m => m.Photos)
         .AsNoTracking();
 
-        if(productParam.CategoryId.HasValue)
+        if (!string.IsNullOrEmpty(productParam.Search))
         {
-            query=query.Where(m=>m.CategoryId==productParam.CategoryId);   
+            var Searchword=productParam.Search.Split(" ");
+            query = query.Where(m => Searchword.All(word =>
+            m.Name.ToLower().Contains(word.ToLower()) ||
+            m.Description.ToLower().Contains(word.ToLower()) 
+            ));
+
+
         }
-        if(productParam.CategoryId > 0)
+        if (productParam.CategoryId.HasValue)
         {
-            query=query.Where(m=>m.CategoryId==productParam.CategoryId);   
+            query = query.Where(m => m.CategoryId == productParam.CategoryId);
+        }
+        if (productParam.CategoryId > 0)
+        {
+            query = query.Where(m => m.CategoryId == productParam.CategoryId);
         }
 
         if (!string.IsNullOrEmpty(productParam.Sort))
@@ -68,11 +79,11 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             };
         }
 
-      
-        query =query.Skip((productParam.pageSize) * (productParam.PageNumber -1)).Take(productParam.pageSize);
-        var totalCount =await query.CountAsync();
-        var totalPage =(int) totalCount/ productParam.pageSize;
-        var result =mapper.Map<List<ProductDTO>>(query);
+
+        query = query.Skip((productParam.pageSize) * (productParam.PageNumber - 1)).Take(productParam.pageSize);
+        var totalCount = await query.CountAsync();
+        var totalPage = (int)totalCount / productParam.pageSize;
+        var result = mapper.Map<List<ProductDTO>>(query);
         return result;
     }
 

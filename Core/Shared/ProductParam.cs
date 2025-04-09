@@ -14,5 +14,6 @@ public class ProductParam
         set{_pageSize = (value > MaxPageSize) ? MaxPageSize : value;}
     }
 
+    public string  Search { get; set; }
     public int PageNumber { get; set; }
 }

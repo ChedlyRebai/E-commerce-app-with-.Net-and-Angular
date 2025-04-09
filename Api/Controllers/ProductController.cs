@@ -1,6 +1,8 @@
 using Api.Helper;
 using AutoMapper;
+using Azure.Identity;
 using Core.DTO;
+using Core.Entities.Product;
 using Core.Interfaces;
 using Infrastructure.Shared;
 using Microsoft.AspNetCore.Http;
@@ -15,19 +17,19 @@ namespace Api.Controllers.Mapping
         {
         }
         [HttpGet("get-all")]
-        public async Task<IActionResult> getAll(ProductParam productParam){
+        public async Task<IActionResult> getAll([FromQuery]ProductParam productParam){
             try
             {
                 var products = await _unitOfWork.ProductRepository.GetAllAsync(productParam);
-                var results = _mapper.Map<List<ProductDTO>>(products);
-
-                if (results is null)
+                //var results = _mapper.Map<List<ProductDTO>>(products);
+                var totalCount= await _unitOfWork.ProductRepository.CountAsync();
+                if (products is null)
                 {
                     return BadRequest(new ResponseAPI(400));
                 }
 
                 else{
-                    return Ok(results);
+                    return Ok(new Pagination<ProductDTO>( productParam.PageNumber, productParam.pageSize, totalCount, products));
                 }
             }
             catch (System.Exception ex)
