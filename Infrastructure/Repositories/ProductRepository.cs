@@ -48,10 +48,12 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
 
         if(categoryId.HasValue)
         {
-            query=query.Where(m=>m.CategoryId==3);
-            
+            query=query.Where(m=>m.CategoryId==categoryId);   
         }
-
+        if(categoryId> 0)
+        {
+            query=query.Where(m=>m.CategoryId==categoryId);   
+        }
 
         if (!string.IsNullOrEmpty(sort))
         {

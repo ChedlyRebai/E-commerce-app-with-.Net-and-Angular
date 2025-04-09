@@ -14,10 +14,10 @@ namespace Api.Controllers.Mapping
         {
         }
         [HttpGet("get-all")]
-        public async Task<IActionResult> getAll(string sort){
+        public async Task<IActionResult> getAll(string sort,int categoryId){
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync();
+                var products = await _unitOfWork.ProductRepository.GetAllAsync(sort,categoryId);
                 var results = _mapper.Map<List<ProductDTO>>(products);
 
                 if (results is null)
@@ -91,7 +91,7 @@ namespace Api.Controllers.Mapping
             catch (System.Exception)
             {
                 
-                throw;
+                return BadRequest(new ResponseAPI(400,"Product not found."));
             }
         }
     }
