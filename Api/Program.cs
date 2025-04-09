@@ -4,6 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options=>{
+    options.AddPolicy("CORSPolicy",builder =>{
+        builder.AllowAnyHeader().
+        AllowAnyMethod().
+        AllowCredentials().
+        WithOrigins("http://localhost:4200");
+    });
+});
+
+
 builder.Services.AddMemoryCache();
 
 builder.Services.AddOpenApi();
@@ -27,7 +37,7 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = string.Empty; // Set Swagger UI at the root (optional)
     });
 }
-
+app.UseCors("CORSPolicy");
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
