@@ -39,7 +39,7 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
-    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string sort,int? categoryId )
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string? sort,int? categoryId )
     {
         var query = context.Products
         .Include(m => m.Category)
