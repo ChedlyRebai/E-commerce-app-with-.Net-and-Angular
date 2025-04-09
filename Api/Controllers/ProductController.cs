@@ -2,6 +2,7 @@ using Api.Helper;
 using AutoMapper;
 using Core.DTO;
 using Core.Interfaces;
+using Infrastructure.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,10 @@ namespace Api.Controllers.Mapping
         {
         }
         [HttpGet("get-all")]
-        public async Task<IActionResult> getAll(string? sort,int? categoryId,int pageSize,int pageNumber){
+        public async Task<IActionResult> getAll(ProductParam productParam){
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync(sort,categoryId,pageSize,pageNumber);
+                var products = await _unitOfWork.ProductRepository.GetAllAsync(productParam);
                 var results = _mapper.Map<List<ProductDTO>>(products);
 
                 if (results is null)
@@ -38,8 +39,9 @@ namespace Api.Controllers.Mapping
         public async Task<IActionResult> getById(int id){
             try
             {
-                var product = await _unitOfWork.ProductRepository.GetByIdAsync(id,x=>x.Category
-                ,x=>x.Photos
+                var product = await _unitOfWork.ProductRepository.GetByIdAsync(
+                    id,x=>x.Category
+                    ,x=>x.Photos
                 );
                 var result = _mapper.Map<ProductDTO>(product);
                 if(result is null){

@@ -7,5 +7,3 @@ public record CategoryDTO
 );
 
 public record UpdateCategoryDTO(string Name,string Description,int id);
-
-

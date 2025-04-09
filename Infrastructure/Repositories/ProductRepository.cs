@@ -4,6 +4,7 @@ using Core.DTO;
 using Core.Entities.Product;
 using Core.Services;
 using Infrastructure.Data;
+using Infrastructure.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -39,25 +40,25 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
-    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string? sort,int? categoryId,int pageSize,int pageNumber )
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync(ProductParam productParam )
     {
         var query = context.Products
         .Include(m => m.Category)
         .Include(m => m.Photos)
         .AsNoTracking();
 
-        if(categoryId.HasValue)
+        if(productParam.CategoryId.HasValue)
         {
-            query=query.Where(m=>m.CategoryId==categoryId);   
+            query=query.Where(m=>m.CategoryId==productParam.CategoryId);   
         }
-        if(categoryId> 0)
+        if(productParam.CategoryId > 0)
         {
-            query=query.Where(m=>m.CategoryId==categoryId);   
+            query=query.Where(m=>m.CategoryId==productParam.CategoryId);   
         }
 
-        if (!string.IsNullOrEmpty(sort))
+        if (!string.IsNullOrEmpty(productParam.Sort))
         {
-            query = sort switch
+            query = productParam.Sort switch
             {
                 "PriceAsn" => query.OrderBy(m => m.NewPrice),
                 "PriceDsn" => query.OrderByDescending(m => m.NewPrice),
@@ -67,12 +68,10 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             };
         }
 
-        pageNumber=pageNumber > 0 ?pageNumber :1;
-        pageSize=pageSize > 0 ?pageSize :10;
-
-        query =query.Skip((pageSize) * (pageNumber -1)).Take(pageSize);
+      
+        query =query.Skip((productParam.pageSize) * (productParam.PageNumber -1)).Take(productParam.pageSize);
         var totalCount =await query.CountAsync();
-        var totalPage =(int) totalCount/ pageSize;
+        var totalPage =(int) totalCount/ productParam.pageSize;
         var result =mapper.Map<List<ProductDTO>>(query);
         return result;
     }
