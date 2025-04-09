@@ -66,6 +66,10 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
                 _ => query.OrderBy(m => m.Name),
             };
         }
+
+        query =query.Skip((pageSize) * (pageNumber -1)).Take(pageSize);
+        var totalCount =await query.CountAsync();
+        var totalPage =(int) totalCount/ pageSize;
         var result =mapper.Map<List<ProductDTO>>(query);
         return result;
     }
