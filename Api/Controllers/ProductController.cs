@@ -14,10 +14,10 @@ namespace Api.Controllers.Mapping
         {
         }
         [HttpGet("get-all")]
-        public async Task<IActionResult> getAll(string sort,int categoryId,int pageSize,int pageNumber){
+        public async Task<IActionResult> getAll(string? sort,int? categoryId,int pageSize,int pageNumber){
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync(sort,categoryId);
+                var products = await _unitOfWork.ProductRepository.GetAllAsync(sort,categoryId,pageSize,pageNumber);
                 var results = _mapper.Map<List<ProductDTO>>(products);
 
                 if (results is null)
