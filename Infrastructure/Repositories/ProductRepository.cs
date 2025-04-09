@@ -39,12 +39,19 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
         return true;
     }
 
-    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string sort)
+    public async Task<IEnumerable<ProductDTO>> GetAllAsync(string sort,int? categoryId )
     {
         var query = context.Products
         .Include(m => m.Category)
         .Include(m => m.Photos)
         .AsNoTracking();
+
+        if(categoryId.HasValue)
+        {
+            query=query.Where(m=>m.CategoryId==3);
+            
+        }
+
 
         if (!string.IsNullOrEmpty(sort))
         {

@@ -7,7 +7,7 @@ namespace Infrastructure.Repositories;
 
 public interface IProductRepository:IGenericRepository<Product>
 {
-    Task<IEnumerable<ProductDTO>> GetAllAsync(string sort);
+    Task<IEnumerable<ProductDTO>> GetAllAsync(string sort,int? categoryId);
     public Task<bool> AddAsync(AddProductDTo addProductDTO);
     Task<bool> UpdateAsync(UpdateProductDTO updateProductDTO);
 

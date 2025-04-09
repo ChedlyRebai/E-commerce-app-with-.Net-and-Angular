@@ -17,7 +17,7 @@ namespace Api.Controllers.Mapping
         public async Task<IActionResult> getAll(string sort){
             try
             {
-                var products = await _unitOfWork.ProductRepository.GetAllAsync(sort);
+                var products = await _unitOfWork.ProductRepository.GetAllAsync();
                 var results = _mapper.Map<List<ProductDTO>>(products);
 
                 if (results is null)
