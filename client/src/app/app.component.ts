@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { response } from 'express';
+import { IProduct } from './Shared/Moddels/Product';
+import { IPagination } from './Shared/Moddels/Pagination';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +15,11 @@ export class AppComponent implements OnInit {
   constructor(private http:HttpClient){
 
   }
-  categories:any[] = [];
+  products:IProduct[] = [];
   getCategory(){
-    return this.http.get(this.baseUrl).subscribe({
-      next: (response:any)=>{
-        this.categories = response.data;
+    return this.http.get<IPagination>(this.baseUrl).subscribe({
+      next: (response:IPagination)=>{
+        this.products = response.data;
         console.log(response);
       }
     })
