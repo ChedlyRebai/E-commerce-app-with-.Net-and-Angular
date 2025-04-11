@@ -1,8 +1,736 @@
-<p>shop works!</p>
-<ul>
-    @for (item of products; track $index){
-        <li>{{item.name}}</li>
-    }
-    
-    
-</ul>
+<div class="bg-white">
+    <div>
+        <!--
+        Mobile filter dialog
+  
+        Off-canvas filters for mobile, show/hide based on off-canvas filters state.
+      -->
+        <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+
+            <div class="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true"></div>
+
+            <!--
+          Off-canvas menu, show/hide based on off-canvas menu state.
+  
+          Entering: "transition ease-in-out duration-300 transform"
+            From: "translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "translate-x-full"
+        -->
+            <div
+                class="ml-auto relative max-w-xs w-full h-full bg-white shadow-xl py-4 pb-12 flex flex-col overflow-y-auto">
+                <div class="px-4 flex items-center justify-between">
+                    <h2 class="text-lg font-medium text-gray-900">Filters</h2>
+                    <button type="button"
+                        class="-mr-2 w-10 h-10 bg-white p-2 rounded-md flex items-center justify-center text-gray-400">
+                        <span class="sr-only">Close menu</span>
+                        <!-- Heroicon name: outline/x -->
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Filters -->
+                <form class="mt-4 border-t border-gray-200">
+                    <h3 class="sr-only">Categories</h3>
+                    <ul role="list" class="font-medium text-gray-900 px-2 py-3">
+                        <li>
+                            <a href="#" class="block px-2 py-3"> Totes </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="block px-2 py-3"> Backpacks </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="block px-2 py-3"> Travel Bags </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="block px-2 py-3"> Hip Bags </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="block px-2 py-3"> Laptop Sleeves </a>
+                        </li>
+                    </ul>
+
+                    <div class="border-t border-gray-200 px-4 py-6">
+                        <h3 class="-mx-2 -my-3 flow-root">
+                            <!-- Expand/collapse section button -->
+                            <button type="button"
+                                class="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"
+                                aria-controls="filter-section-mobile-0" aria-expanded="false">
+                                <span class="font-medium text-gray-900"> Color </span>
+                                <span class="ml-6 flex items-center">
+                                    <!--
+                      Expand icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/plus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <!--
+                      Collapse icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/minus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </h3>
+                        <!-- Filter section, show/hide based on section state. -->
+                        <div class="pt-6" id="filter-section-mobile-0">
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-0" name="color[]" value="white" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-0" class="ml-3 min-w-0 flex-1 text-gray-500"> White
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-1" name="color[]" value="beige" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-1" class="ml-3 min-w-0 flex-1 text-gray-500"> Beige
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-2" name="color[]" value="blue" type="checkbox"
+                                        checked
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-2" class="ml-3 min-w-0 flex-1 text-gray-500"> Blue
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-3" name="color[]" value="brown" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-3" class="ml-3 min-w-0 flex-1 text-gray-500"> Brown
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-4" name="color[]" value="green" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-4" class="ml-3 min-w-0 flex-1 text-gray-500"> Green
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-color-5" name="color[]" value="purple" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-color-5" class="ml-3 min-w-0 flex-1 text-gray-500"> Purple
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 px-4 py-6">
+                        <h3 class="-mx-2 -my-3 flow-root">
+                            <!-- Expand/collapse section button -->
+                            <button type="button"
+                                class="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"
+                                aria-controls="filter-section-mobile-1" aria-expanded="false">
+                                <span class="font-medium text-gray-900"> Category </span>
+                                <span class="ml-6 flex items-center">
+                                    <!--
+                      Expand icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/plus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <!--
+                      Collapse icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/minus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </h3>
+                        <!-- Filter section, show/hide based on section state. -->
+                        <div class="pt-6" id="filter-section-mobile-1">
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
+                                        type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-500"> New
+                                        Arrivals </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-category-1" name="category[]" value="sale" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-category-1" class="ml-3 min-w-0 flex-1 text-gray-500">
+                                        Sale </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-category-2" name="category[]" value="travel"
+                                        type="checkbox" checked
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-category-2" class="ml-3 min-w-0 flex-1 text-gray-500">
+                                        Travel </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-category-3" name="category[]" value="organization"
+                                        type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-category-3" class="ml-3 min-w-0 flex-1 text-gray-500">
+                                        Organization </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-category-4" name="category[]" value="accessories"
+                                        type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-category-4" class="ml-3 min-w-0 flex-1 text-gray-500">
+                                        Accessories </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-gray-200 px-4 py-6">
+                        <h3 class="-mx-2 -my-3 flow-root">
+                            <!-- Expand/collapse section button -->
+                            <button type="button"
+                                class="px-2 py-3 bg-white w-full flex items-center justify-between text-gray-400 hover:text-gray-500"
+                                aria-controls="filter-section-mobile-2" aria-expanded="false">
+                                <span class="font-medium text-gray-900"> Size </span>
+                                <span class="ml-6 flex items-center">
+                                    <!--
+                      Expand icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/plus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <!--
+                      Collapse icon, show/hide based on section open state.
+  
+                      Heroicon name: solid/minus-sm
+                    -->
+                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </h3>
+                        <!-- Filter section, show/hide based on section state. -->
+                        <div class="pt-6" id="filter-section-mobile-2">
+                            <div class="space-y-6">
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-0" name="size[]" value="2l" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-0" class="ml-3 min-w-0 flex-1 text-gray-500"> 2L
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-1" name="size[]" value="6l" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-1" class="ml-3 min-w-0 flex-1 text-gray-500"> 6L
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-2" name="size[]" value="12l" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-2" class="ml-3 min-w-0 flex-1 text-gray-500"> 12L
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-3" name="size[]" value="18l" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-3" class="ml-3 min-w-0 flex-1 text-gray-500"> 18L
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-4" name="size[]" value="20l" type="checkbox"
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-4" class="ml-3 min-w-0 flex-1 text-gray-500"> 20L
+                                    </label>
+                                </div>
+
+                                <div class="flex items-center">
+                                    <input id="filter-mobile-size-5" name="size[]" value="40l" type="checkbox" checked
+                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                    <label for="filter-mobile-size-5" class="ml-3 min-w-0 flex-1 text-gray-500"> 40L
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <main class=" mx-auto px-4 sm:px-6 ">
+            <div class="relative z-10 flex items-baseline justify-between pt-15 pb-6 border-b border-gray-200">
+                <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
+
+                <div class="flex items-center">
+                    <div class="relative inline-block text-left">
+                        <div>
+                            <button type="button"
+                                class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900"
+                                id="menu-button" aria-expanded="false" aria-haspopup="true">
+                                Sort
+                                <!-- Heroicon name: solid/chevron-down -->
+                                <svg class="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!--
+                Dropdown menu, show/hide based on menu state.
+  
+                Entering: "transition ease-out duration-100"
+                  From: "transform opacity-0 scale-95"
+                  To: "transform opacity-100 scale-100"
+                Leaving: "transition ease-in duration-75"
+                  From: "transform opacity-100 scale-100"
+                  To: "transform opacity-0 scale-95"
+              -->
+                        <div class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <div class="py-1" role="none">
+                                <!--
+                    Active: "bg-gray-100", Not Active: ""
+  
+                    Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
+                  -->
+                                <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem"
+                                    tabindex="-1" id="menu-item-0"> Most Popular </a>
+
+                                <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                    id="menu-item-1"> Best Rating </a>
+
+                                <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                    id="menu-item-2"> Newest </a>
+
+                                <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                    id="menu-item-3"> Price: Low to High </a>
+
+                                <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                    id="menu-item-4"> Price: High to Low </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
+                        <span class="sr-only">View grid</span>
+                        <!-- Heroicon name: solid/view-grid -->
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                        </svg>
+                    </button>
+                    <button type="button" class="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden">
+                        <span class="sr-only">Filters</span>
+                        <!-- Heroicon name: solid/filter -->
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <section aria-labelledby="products-heading" class="pt-6 pb-24">
+                <h2 id="products-heading" class="sr-only">Products</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
+                    <!-- Filters -->
+                    <form class="hidden lg:block">
+                        <h3 class="sr-only">Categories</h3>
+                        <ul role="list"
+                            class="text-sm font-medium text-gray-900 space-y-4 pb-6 border-b border-gray-200">
+                            <li>
+                                <a href="#"> Totes </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> Backpacks </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> Travel Bags </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> Hip Bags </a>
+                            </li>
+
+                            <li>
+                                <a href="#"> Laptop Sleeves </a>
+                            </li>
+                        </ul>
+
+                        <div class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <!-- Expand/collapse section button -->
+                                <button type="button"
+                                    class="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-0" aria-expanded="false">
+                                    <span class="font-medium text-gray-900"> Color </span>
+                                    <span class="ml-6 flex items-center">
+                                        <!--
+                        Expand icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/plus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <!--
+                        Collapse icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/minus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+                            <!-- Filter section, show/hide based on section state. -->
+                            <div class="pt-6" id="filter-section-0">
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <input id="filter-color-0" name="color[]" value="white" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-0" class="ml-3 text-sm text-gray-600"> White </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-color-1" name="color[]" value="beige" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-1" class="ml-3 text-sm text-gray-600"> Beige </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-color-2" name="color[]" value="blue" type="checkbox" checked
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-2" class="ml-3 text-sm text-gray-600"> Blue </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-color-3" name="color[]" value="brown" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-3" class="ml-3 text-sm text-gray-600"> Brown </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-color-4" name="color[]" value="green" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-4" class="ml-3 text-sm text-gray-600"> Green </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-color-5" name="color[]" value="purple" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-color-5" class="ml-3 text-sm text-gray-600"> Purple </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <!-- Expand/collapse section button -->
+                                <button type="button"
+                                    class="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-1" aria-expanded="false">
+                                    <span class="font-medium text-gray-900"> Category </span>
+                                    <span class="ml-6 flex items-center">
+                                        <!--
+                        Expand icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/plus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <!--
+                        Collapse icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/minus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+                            <!-- Filter section, show/hide based on section state. -->
+                            <div class="pt-6" id="filter-section-1">
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <input id="filter-category-0" name="category[]" value="new-arrivals"
+                                            type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-category-0" class="ml-3 text-sm text-gray-600"> New Arrivals
+                                        </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-category-1" name="category[]" value="sale" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-category-1" class="ml-3 text-sm text-gray-600"> Sale </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-category-2" name="category[]" value="travel" type="checkbox"
+                                            checked
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-category-2" class="ml-3 text-sm text-gray-600"> Travel
+                                        </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-category-3" name="category[]" value="organization"
+                                            type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-category-3" class="ml-3 text-sm text-gray-600"> Organization
+                                        </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-category-4" name="category[]" value="accessories"
+                                            type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-category-4" class="ml-3 text-sm text-gray-600"> Accessories
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-b border-gray-200 py-6">
+                            <h3 class="-my-3 flow-root">
+                                <!-- Expand/collapse section button -->
+                                <button type="button"
+                                    class="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500"
+                                    aria-controls="filter-section-2" aria-expanded="false">
+                                    <span class="font-medium text-gray-900"> Size </span>
+                                    <span class="ml-6 flex items-center">
+                                        <!--
+                        Expand icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/plus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <!--
+                        Collapse icon, show/hide based on section open state.
+  
+                        Heroicon name: solid/minus-sm
+                      -->
+                                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </h3>
+                            <!-- Filter section, show/hide based on section state. -->
+                            <div class="pt-6" id="filter-section-2">
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <input id="filter-size-0" name="size[]" value="2l" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-0" class="ml-3 text-sm text-gray-600"> 2L </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-size-1" name="size[]" value="6l" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-1" class="ml-3 text-sm text-gray-600"> 6L </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-size-2" name="size[]" value="12l" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-2" class="ml-3 text-sm text-gray-600"> 12L </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-size-3" name="size[]" value="18l" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-3" class="ml-3 text-sm text-gray-600"> 18L </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-size-4" name="size[]" value="20l" type="checkbox"
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-4" class="ml-3 text-sm text-gray-600"> 20L </label>
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        <input id="filter-size-5" name="size[]" value="40l" type="checkbox" checked
+                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                        <label for="filter-size-5" class="ml-3 text-sm text-gray-600"> 40L </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Product grid -->
+                    <div class="lg:col-span-3">
+
+                        <!-- <div class="bg-white">
+                            <div class=" mx-auto py-1 px-4  sm:px-6 lg:max-w-7xl lg:px-8">
+
+                                <div
+                                    class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+                                    <div class="relative group">
+                                        <div class="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZATk1D79l1hmh2cqmmA8KcmHedBmC41LShm-CT2pRJbmDe7HaxrZoOsWvakA1QSTTQ2c_D98rZc2AuqRsKcev5nLnSReYqF09zcPscjJ4"
+                                                alt="Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background."
+                                                class="object-center object-cover w-fit">
+                                            <div class="flex items-end opacity-0 p-4 group-hover:opacity-100"
+                                                aria-hidden="true">
+                                                <div
+                                                    class="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+                                                    View Product</div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="mt-4 flex items-center justify-between text-base font-medium text-gray-900 space-x-8">
+                                            <h3>
+                                                <a href="#">
+                                                    <span aria-hidden="true" class="absolute inset-0"></span>
+                                                    Fusion
+                                                </a>
+                                            </h3>
+                                            <p>$49</p>
+                                        </div>
+                                        <p class="mt-1 text-sm text-gray-500">UI Kit</p>
+                                    </div>
+                                     More products... -->
+                        <!-- </div>
+                            </div>
+                        </div> --> 
+
+
+                        <div
+                            class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm ">
+                            <a href="#">
+                                <img class="p-6 w-full  rounded-t-lg" src="data:image/webp;base64,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"
+                                    alt="product image" />
+                            </a>
+                            <div class="px-5 pb-5">
+                                <a href="#">
+                                    <h5 class="text-xl font-semibold tracking-tight text-gray-900 ">Apple
+                                        Watch Series 7 GPS, Aluminium Case, Starlight Sport</h5>
+                                </a>
+                                <div class="flex items-center mt-2.5 mb-5">
+                                    <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                        <svg class="w-4 h-4 text-gray-200 " aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                            <path
+                                                d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+                                        </svg>
+                                    </div>
+                                    <span
+                                        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm  ms-3">5.0</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-3xl font-bold text-gray-900">$599</span>
+                                    <a href="#"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add
+                                        to cart</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
