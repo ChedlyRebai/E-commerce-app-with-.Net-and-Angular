@@ -149,22 +149,14 @@
                                 aria-controls="filter-section-mobile-1" aria-expanded="false">
                                 <span class="font-medium text-gray-900"> Category </span>
                                 <span class="ml-6 flex items-center">
-                                    <!--
-                      Expand icon, show/hide based on section open state.
-  
-                      Heroicon name: solid/plus-sm
-                    -->
+
                                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                         fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd"
                                             d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    <!--
-                      Collapse icon, show/hide based on section open state.
-  
-                      Heroicon name: solid/minus-sm
-                    -->
+
                                     <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                         fill="currentColor" aria-hidden="true">
                                         <path fill-rule="evenodd" d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
@@ -176,44 +168,15 @@
                         <!-- Filter section, show/hide based on section state. -->
                         <div class="pt-6" id="filter-section-mobile-1">
                             <div class="space-y-6">
+                                @for (item of categories; track $index){
                                 <div class="flex items-center">
                                     <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
                                         type="checkbox"
                                         class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                                     <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-500"> New
-                                        Arrivals </label>
+                                        {{item.name}} </label>
                                 </div>
-
-                                <div class="flex items-center">
-                                    <input id="filter-mobile-category-1" name="category[]" value="sale" type="checkbox"
-                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                    <label for="filter-mobile-category-1" class="ml-3 min-w-0 flex-1 text-gray-500">
-                                        Sale </label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="filter-mobile-category-2" name="category[]" value="travel"
-                                        type="checkbox" checked
-                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                    <label for="filter-mobile-category-2" class="ml-3 min-w-0 flex-1 text-gray-500">
-                                        Travel </label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="filter-mobile-category-3" name="category[]" value="organization"
-                                        type="checkbox"
-                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                    <label for="filter-mobile-category-3" class="ml-3 min-w-0 flex-1 text-gray-500">
-                                        Organization </label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="filter-mobile-category-4" name="category[]" value="accessories"
-                                        type="checkbox"
-                                        class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                    <label for="filter-mobile-category-4" class="ml-3 min-w-0 flex-1 text-gray-500">
-                                        Accessories </label>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -522,42 +485,17 @@
                             <!-- Filter section, show/hide based on section state. -->
                             <div class="pt-6" id="filter-section-1">
                                 <div class="space-y-4">
-                                    <div class="flex items-center">
-                                        <input id="filter-category-0" name="category[]" value="new-arrivals"
-                                            type="checkbox"
-                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-category-0" class="ml-3 text-sm text-gray-600"> New Arrivals
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="filter-category-1" name="category[]" value="sale" type="checkbox"
-                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-category-1" class="ml-3 text-sm text-gray-600"> Sale </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="filter-category-2" name="category[]" value="travel" type="checkbox"
-                                            checked
-                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-category-2" class="ml-3 text-sm text-gray-600"> Travel
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="filter-category-3" name="category[]" value="organization"
-                                            type="checkbox"
-                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-category-3" class="ml-3 text-sm text-gray-600"> Organization
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="filter-category-4" name="category[]" value="accessories"
-                                            type="checkbox"
-                                            class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                        <label for="filter-category-4" class="ml-3 text-sm text-gray-600"> Accessories
-                                        </label>
+                                    <div class="space-y-6">
+                                        @for (item of categories; track $index){
+                                        <div class="flex items-center">
+                                            <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
+                                                type="checkbox"
+                                                class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
+                                            <label for="filter-mobile-category-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500"> New
+                                                {{item.name}} </label>
+                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
