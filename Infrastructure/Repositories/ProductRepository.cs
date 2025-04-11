@@ -56,16 +56,15 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             m.Description.ToLower().Contains(word.ToLower()) 
             ));
 
-
         }
-        if (productParam.CategoryId.HasValue)
-        {
-            query = query.Where(m => m.CategoryId == productParam.CategoryId);
-        }
-        if (productParam.CategoryId > 0)
-        {
-            query = query.Where(m => m.CategoryId == productParam.CategoryId);
-        }
+        // if (productParam.CategoryId.HasValue)
+        // {
+        //     query = query.Where(m => m.CategoryId == productParam.CategoryId);
+        // }
+        // if (productParam.CategoryId > 0)
+        // {
+        //     query = query.Where(m => m.CategoryId == productParam.CategoryId);
+        // }
 
         if (!string.IsNullOrEmpty(productParam.Sort))
         {
@@ -79,8 +78,13 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             };
         }
 
+        var pageNumber = productParam.PageNumber > 0 ? productParam.PageNumber : 1;
+        var pageSize = productParam.pageSize > 0 ? productParam.pageSize : 10;
 
-        query = query.Skip((productParam.pageSize) * (productParam.PageNumber - 1)).Take(productParam.pageSize);
+
+        //query = query.Skip((productParam.pageSize) * (productParam.PageNumber - 1)).Take(productParam.pageSize);
+        query = query.Skip((pageSize) * (pageNumber - 1)).Take(pageSize);
+
         var totalCount = await query.CountAsync();
         var totalPage = (int)totalCount / productParam.pageSize;
         var result = mapper.Map<List<ProductDTO>>(query);

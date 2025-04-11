@@ -1,1 +1,9 @@
 <app-navbar></app-navbar>
+
+<ul>
+    @for (item of categories; track $index){
+        <li>{{item.name}}</li>
+    }
+    
+    
+</ul>
