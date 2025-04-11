@@ -38,6 +38,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 app.UseCors("CORSPolicy");
+app.UseStaticFiles();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
