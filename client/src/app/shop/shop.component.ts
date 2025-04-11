@@ -15,6 +15,10 @@ export class ShopComponent implements OnInit {
   }
   products:IProduct[]=[]
   ngOnInit(): void {
+   this.getAllProducts();
+  }
+
+  getAllProducts(){
     this.shopService.getProducts().subscribe(
       {
         next:(response:IPagination)=>{
@@ -23,5 +27,4 @@ export class ShopComponent implements OnInit {
       }
     )
   }
-
 }
