@@ -23,16 +23,19 @@ export class ShopComponent implements OnInit {
   }
 
   getAllProducts(){
-    this.shopService.getProducts().subscribe(
+    this.shopService.getProducts(this.categoryId).subscribe(
       {
         next:(response:IPagination)=>{
           this.products= response.data;
+          console.log(this.products);
         }
       }
     )
   }
 
+  categoryId:number=0;
   getAllCategories(){
+
     this.shopService.getCategories().subscribe({
       next:(response:ICategory[])=>{
         this.categories = response;
@@ -40,4 +43,20 @@ export class ShopComponent implements OnInit {
     });
 
   }
+
+
+
+  selectedId(categoryId:number){
+    this.categoryId=categoryId;
+    console.log(this.categoryId);
+    this.getAllProducts();
+  }
+
+
+  SortingOptions =[
+    {name:'Price: Low to High',value:'priceAsc'},
+    {name:'Price: High to Low',value:'priceDesc'},
+    {name:'Name: A to Z',value:'nameAsc'},
+    {name:'Name: Z to A',value:'nameDesc'},
+  ]
 }

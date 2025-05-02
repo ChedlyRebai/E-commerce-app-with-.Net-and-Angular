@@ -488,11 +488,11 @@
                                     <div class="space-y-6">
                                         @for (item of categories; track $index){
                                         <div class="flex items-center">
-                                            <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
+                                            <input  id="filter-mobile-category-0" name="category[]" value="new-arrivals"
                                                 type="checkbox"
                                                 class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                            <label for="filter-mobile-category-0"
-                                                class="ml-3 min-w-0 flex-1 text-gray-500"> New
+                                            <label (click)="selectedId(item.id)" for="filter-mobile-category-0"
+                                                class="ml-3 min-w-0 flex-1 text-gray-500"> 
                                                 {{item.name}} </label>
                                         </div>
                                         }

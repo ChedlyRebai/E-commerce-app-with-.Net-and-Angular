@@ -57,14 +57,14 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             ));
 
         }
-        // if (productParam.CategoryId.HasValue)
-        // {
-        //     query = query.Where(m => m.CategoryId == productParam.CategoryId);
-        // }
-        // if (productParam.CategoryId > 0)
-        // {
-        //     query = query.Where(m => m.CategoryId == productParam.CategoryId);
-        // }
+        if (productParam.CategoryId.HasValue)
+        {
+            query = query.Where(m => m.CategoryId == productParam.CategoryId);
+        }
+        if (productParam.CategoryId > 0)
+        {
+            query = query.Where(m => m.CategoryId == productParam.CategoryId);
+        }
 
         if (!string.IsNullOrEmpty(productParam.Sort))
         {
