@@ -168,15 +168,14 @@
                         <!-- Filter section, show/hide based on section state. -->
                         <div class="pt-6" id="filter-section-mobile-1">
                             <div class="space-y-6">
-                                @for (item of categories; track $index){
-                                <div class="flex items-center">
-                                    <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
-                                        type="checkbox"
+                                <!-- <div *ngFor="let item of categories; let i = index" class="flex items-center">
+                                    <input id="filter-mobile-category-{{i}}" name="category[]" [value]="item.name" type="checkbox"
                                         class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
-                                    <label for="filter-mobile-category-0" class="ml-3 min-w-0 flex-1 text-gray-500"> New
-                                        {{item.name}} </label>
-                                </div>
-                                }
+                                    <label (click)="selectedId(item.id)" [for]="'filter-mobile-category-' + i"
+                                        class="ml-3 min-w-0 flex-1 text-gray-500">
+                                        {{item.name}}
+                                    </label>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -268,7 +267,26 @@
             <div class="relative z-10 flex items-baseline justify-between pt-15 pb-6 border-b border-gray-200">
                 <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
 
+                
+
                 <div class="flex items-center">
+                    <div>
+                        <div class="mt-2 mx-4">
+                            <div
+                                class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"> 
+                                <input
+                                #search
+                                (keyup)="searchProduct(search.value)"
+                                (keyup.enter)="searchProduct(search.value)"  
+                                type="text" name="price" id="price"
+                                class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                                placeholder="ex : lenovo">
+    
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="cursor-pointer mx-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
+
                     <div class="relative inline-block text-left">
                         <div>
                             <button type="button"
@@ -296,18 +314,24 @@
                   From: "transform opacity-100 scale-100"
                   To: "transform opacity-0 scale-95"
               -->
-                        <div class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+
+                        <div (click)="ToggleDropDown()"  class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                            <div class="py-1" role="none">
+                            <div class="py-1" role="none" >
+
                                 <!--
                     Active: "bg-gray-100", Not Active: ""
   
                     Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
                   -->
-                                <a href="#" class="font-medium text-gray-900 block px-4 py-2 text-sm" role="menuitem"
-                                    tabindex="-1" id="menu-item-0"> Most Popular </a>
 
-                                <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
+                                <ng-container  *ngFor="let item of SortingOptions; let i = index">
+                                    <a (click)="sortingBy(item.value)"
+                                        class="cursor-pointer hover:bg-gray-200 font-medium text-gray-900 block px-4 py-2 text-sm"
+                                        role="menuitem" tabindex="-1" [id]="'menu-item-' + i"> {{item.name}} </a>
+                                </ng-container>
+
+                                <!-- <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
                                     id="menu-item-1"> Best Rating </a>
 
                                 <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
@@ -317,7 +341,7 @@
                                     id="menu-item-3"> Price: Low to High </a>
 
                                 <a href="#" class="text-gray-500 block px-4 py-2 text-sm" role="menuitem" tabindex="-1"
-                                    id="menu-item-4"> Price: High to Low </a>
+                                    id="menu-item-4"> Price: High to Low </a> -->
                             </div>
                         </div>
                     </div>
@@ -331,6 +355,7 @@
                                 d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                         </svg>
                     </button>
+
                     <button type="button" class="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden">
                         <span class="sr-only">Filters</span>
                         <!-- Heroicon name: solid/filter -->
@@ -488,12 +513,13 @@
                                     <div class="space-y-6">
                                         @for (item of categories; track $index){
                                         <div class="flex items-center">
-                                            <input  id="filter-mobile-category-0" name="category[]" value="new-arrivals"
+                                            <input id="filter-mobile-category-0" name="category[]" value="new-arrivals"
                                                 type="checkbox"
                                                 class="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500">
                                             <label (click)="selectedId(item.id)" for="filter-mobile-category-0"
-                                                class="ml-3 min-w-0 flex-1 text-gray-500"> 
-                                                {{item.name}} </label>
+                                                class="ml-3 min-w-0 flex-1 text-gray-500">
+                                                {{item.name}}
+                                            </label>
                                         </div>
                                         }
                                     </div>
@@ -614,11 +640,14 @@
                             </div>
                         </div> -->
 
-                        @for (item of products; track $index){
+                        <!-- @for (item of products; track $index){
                         <ng-container>
-                            <!-- <app-product-item *ngFor="let product of products" [product]="product"></app-product-item> -->
                             <app-product-item class="caret-amber-200 lg:col-span-3" [Product]="item"></app-product-item>
-                        </ng-container> }
+                        </ng-container>
+                        }  -->
+                        <ng-container *ngFor="let item of products; let i = index">
+                            <app-product-item class="caret-amber-200 lg:col-span-3" [Product]="item"></app-product-item>
+                        </ng-container>
                     </div>
                 </div>
             </section>

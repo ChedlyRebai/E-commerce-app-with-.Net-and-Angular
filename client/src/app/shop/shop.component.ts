@@ -16,6 +16,8 @@ export class ShopComponent implements OnInit {
   }
   products:IProduct[]=[]
   categories:ICategory[]=[];
+  selectedSort:string='';
+  searchText:string='';
   ngOnInit(): void {
    this.getAllProducts();
    this.getAllCategories();
@@ -23,7 +25,7 @@ export class ShopComponent implements OnInit {
   }
 
   getAllProducts(){
-    this.shopService.getProducts(this.categoryId).subscribe(
+    this.shopService.getProducts(this.categoryId,this.selectedSort,this.searchText).subscribe(
       {
         next:(response:IPagination)=>{
           this.products= response.data;
@@ -35,13 +37,11 @@ export class ShopComponent implements OnInit {
 
   categoryId:number=0;
   getAllCategories(){
-
     this.shopService.getCategories().subscribe({
       next:(response:ICategory[])=>{
         this.categories = response;
       }
     });
-
   }
 
 
@@ -54,9 +54,27 @@ export class ShopComponent implements OnInit {
 
 
   SortingOptions =[
-    {name:'Price: Low to High',value:'priceAsc'},
-    {name:'Price: High to Low',value:'priceDesc'},
-    {name:'Name: A to Z',value:'nameAsc'},
-    {name:'Name: Z to A',value:'nameDesc'},
+    {name:'Price: Low to High',value:'PriceAsn'},
+    {name:'Price: High to Low',value:'PriceDsn'},
+    {name:'Name: A to Z',value:'NameAsn'},
+    {name:'Name: Z to A',value:'NameDsn'},
   ]
+
+  
+  visible:boolean = false;
+  ToggleDropDown(){
+    this.visible = !this.visible
+  }
+  
+  searchProduct(search:string){
+    this.searchText=search;
+    this.getAllProducts();
+  }
+
+  
+  sortingBy(ev:any){
+    this.selectedSort=ev;
+    this.getAllProducts();
+  }
+
 }

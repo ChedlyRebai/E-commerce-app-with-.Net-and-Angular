@@ -11,9 +11,7 @@ export class ShopService {
 
   
   baseUrl = 'http://localhost:5108/api/';
-  constructor(private http:HttpClient){
-
-  }
+  constructor(private http:HttpClient){}
   products:IProduct[] = [];
   categorie:ICategory[]=[];
   getCategories(){
@@ -21,10 +19,20 @@ export class ShopService {
     return this.http.get<ICategory[]>(this.baseUrl+"Category/get-all?");
   }
   
-  getProducts(categorieId?:number){
+  getProducts(categorieId?:number,sortSelected?:string,searchText?:string){
     let params = new HttpParams();
     if(categorieId){
       params = params.append('CategoryId', categorieId.toString());
+    }
+
+    if(searchText){
+      params =params.append('Search', searchText.toString());
+    }
+
+
+    if(sortSelected){
+      params = params.append('Sort', sortSelected.toString());
+
     }
     console.log(params);
     return this.http.get<IPagination>(this.baseUrl+"Product/get-all",{params});
