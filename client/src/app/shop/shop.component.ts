@@ -44,7 +44,7 @@ export class ShopComponent implements OnInit {
     });
   }
 
-
+  
 
   selectedId(categoryId:number){
     this.categoryId=categoryId;

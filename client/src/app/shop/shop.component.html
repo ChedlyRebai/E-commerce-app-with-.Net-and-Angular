@@ -267,25 +267,23 @@
             <div class="relative z-10 flex items-baseline justify-between pt-15 pb-6 border-b border-gray-200">
                 <h1 class="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
 
-                
+
 
                 <div class="flex items-center">
                     <div>
                         <div class="mt-2 mx-4">
                             <div
-                                class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600"> 
-                                <input
-                                #search
-                                (keyup)="searchProduct(search.value)"
-                                (keyup.enter)="searchProduct(search.value)"  
-                                type="text" name="price" id="price"
-                                class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                                placeholder="ex : lenovo">
-    
+                                class="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+                                <input #search (keyup)="searchProduct(search.value)"
+                                    (keyup.enter)="searchProduct(search.value)" type="text" name="price" id="price"
+                                    class="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                                    placeholder="ex : lenovo">
+
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="cursor-pointer mx-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
+                    <button type="button"
+                        class="cursor-pointer mx-2 inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Search</button>
 
                     <div class="relative inline-block text-left">
                         <div>
@@ -315,9 +313,10 @@
                   To: "transform opacity-0 scale-95"
               -->
 
-                        <div (click)="ToggleDropDown()"  class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                        <div (click)="ToggleDropDown()"
+                            class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-2xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                            <div class="py-1" role="none" >
+                            <div class="py-1" role="none">
 
                                 <!--
                     Active: "bg-gray-100", Not Active: ""
@@ -325,7 +324,7 @@
                     Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
                   -->
 
-                                <ng-container  *ngFor="let item of SortingOptions; let i = index">
+                                <ng-container *ngFor="let item of SortingOptions; let i = index">
                                     <a (click)="sortingBy(item.value)"
                                         class="cursor-pointer hover:bg-gray-200 font-medium text-gray-900 block px-4 py-2 text-sm"
                                         role="menuitem" tabindex="-1" [id]="'menu-item-' + i"> {{item.name}} </a>
@@ -368,10 +367,9 @@
                     </button>
                 </div>
             </div>
-
-            <section aria-labelledby="products-heading" class="pt-6 pb-24">
+            
+            <section aria-labelledby="products-heading" class="pt-6 ">
                 <h2 id="products-heading" class="sr-only">Products</h2>
-
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-x-8 gap-y-10">
                     <!-- Filters -->
                     <form class="hidden lg:block">
@@ -604,53 +602,77 @@
                     </form>
 
                     <!-- Product grid -->
-                    <div class="lg:col-span-3">
+                    <div class="lg:col-span-3 ">
+                        <!-- Product grid -->
+                         <div class="flex h-full flex-col justify-between">
 
-                        <!-- <div class="bg-white">
-                            <div class=" mx-auto py-1 px-4  sm:px-6 lg:max-w-7xl lg:px-8">
-
-                                <div
-                                    class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
-                                    <div class="relative group">
-                                        <div class="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZATk1D79l1hmh2cqmmA8KcmHedBmC41LShm-CT2pRJbmDe7HaxrZoOsWvakA1QSTTQ2c_D98rZc2AuqRsKcev5nLnSReYqF09zcPscjJ4"
-                                                alt="Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background."
-                                                class="object-center object-cover w-fit">
-                                            <div class="flex items-end opacity-0 p-4 group-hover:opacity-100"
-                                                aria-hidden="true">
-                                                <div
-                                                    class="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                                                    View Product</div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="mt-4 flex items-center justify-between text-base font-medium text-gray-900 space-x-8">
-                                            <h3>
-                                                <a href="#">
-                                                    <span aria-hidden="true" class="absolute inset-0"></span>
-                                                    Fusion
-                                                </a>
-                                            </h3>
-                                            <p>$49</p>
-                                        </div>
-                                        <p class="mt-1 text-sm text-gray-500">UI Kit</p>
-                                    </div>
-                                     More products... -->
-                        <!-- </div>
-                            </div>
-                        </div> -->
-
-                        <!-- @for (item of products; track $index){
-                        <ng-container>
-                            <app-product-item class="caret-amber-200 lg:col-span-3" [Product]="item"></app-product-item>
-                        </ng-container>
-                        }  -->
+                         <div>
                         <ng-container *ngFor="let item of products; let i = index">
                             <app-product-item class="caret-amber-200 lg:col-span-3" [Product]="item"></app-product-item>
                         </ng-container>
                     </div>
+                    
+                        <!-- Navigation moved to the bottom -->
+                        <nav class="border-t mb-3 pb-3 border-gray-200 px-4 flex items-center justify-between sm:px-0">
+                            <div class="-mt-px w-0 flex-1 flex">
+                                <a href="#"
+                                    class="border-t-2 border-transparent pt-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                    <!-- Heroicon name: solid/arrow-narrow-left -->
+                                    <svg class="mr-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Previous
+                                </a>
+                            </div>
+                            <div class="hidden md:-mt-px md:flex">
+                                <a href="#"
+                                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    1 </a>
+                                <a href="#"
+                                    class="border-indigo-500 text-indigo-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium"
+                                    aria-current="page"> 2 </a>
+                                <a href="#"
+                                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    3 </a>
+                                <span
+                                    class="border-transparent text-gray-500 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    ... </span>
+                                <a href="#"
+                                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    8 </a>
+                                <a href="#"
+                                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    9 </a>
+                                <a href="#"
+                                    class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                                    10 </a>
+                            </div>
+                            <div class="-mt-px w-0 flex-1 flex justify-end">
+                                <a href="#"
+                                    class="border-t-2 border-transparent pt-4 pl-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+                                    Next
+                                    <!-- Heroicon name: solid/arrow-narrow-right -->
+                                    <svg class="ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+
+                    </div>
+
+
                 </div>
+
             </section>
+
         </main>
     </div>
 </div>
