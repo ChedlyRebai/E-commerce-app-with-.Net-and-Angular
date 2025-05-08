@@ -12,7 +12,7 @@ import { ICategory } from '../Shared/Moddels/Category';
 })
 export class ShopComponent implements OnInit {
   constructor(private shopService:ShopService){
-
+      
   }
   products:IProduct[]=[]
   categories:ICategory[]=[];
@@ -21,6 +21,7 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
    this.getAllProducts();
    this.getAllCategories();
+   this.
   console.log(this.categories);
   }
 
