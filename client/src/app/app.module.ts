@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent
@@ -15,7 +15,7 @@ import { ShopModule } from './shop/shop.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ShopModule,
+    NgxSpinnerModule,
   ],
   providers: [
     provideClientHydration(),

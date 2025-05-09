@@ -38,5 +38,10 @@ export class ShopService {
     return this.http.get<IPagination>(this.baseUrl+"Product/get-all",{params});
   }
 
- 
+  
+  getProductById(id:number){
+    return this.http.get<IProduct>(this.baseUrl+"Product/get-by-id/"+id);
+
+  } 
+
 }

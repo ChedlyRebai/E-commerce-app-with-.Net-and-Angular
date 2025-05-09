@@ -21,8 +21,8 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
    this.getAllProducts();
    this.getAllCategories();
-   this.
-  console.log(this.categories);
+   
+  // console.log(this.categories);
   }
 
   getAllProducts(){
@@ -30,7 +30,7 @@ export class ShopComponent implements OnInit {
       {
         next:(response:IPagination)=>{
           this.products= response.data;
-          console.log(this.products);
+         
         }
       }
     )
@@ -49,7 +49,7 @@ export class ShopComponent implements OnInit {
 
   selectedId(categoryId:number){
     this.categoryId=categoryId;
-    console.log(this.categoryId);
+    
     this.getAllProducts();
   }
 
