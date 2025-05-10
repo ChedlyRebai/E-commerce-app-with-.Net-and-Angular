@@ -4,10 +4,12 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -17,16 +19,24 @@ import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
     AppRoutingModule,
     CoreModule,
     NgxSpinnerModule,
+    ToastrModule.forRoot({
+      closeButton:true,
+      progressBar:true,
+      positionClass:'toast-button-right'
+
+    }),
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(
+     // withInterceptorsFromDi(),
+      withFetch() // Enable fetch API
+    ),
     {
       provide: HTTP_INTERCEPTORS,
-      useClass:LoaderInterceptor,
-      multi:true
+      useClass: LoaderInterceptor,
+      multi: true
     }
-
   ],
   bootstrap: [AppComponent]
 })
