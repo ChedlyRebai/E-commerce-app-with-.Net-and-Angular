@@ -4,9 +4,10 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ShopModule } from './shop/shop.module';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +20,12 @@ import { NgxSpinnerModule } from "ngx-spinner";
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient()
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:LoaderInterceptor,
+      multi:true
+    }
 
   ],
   bootstrap: [AppComponent]
