@@ -13,4 +13,6 @@ public interface IUnitOfWork
     public ICategoryReppository CategoryReppository { get; }
     public IProductRepository ProductRepository { get; }
     public IPhotoRepository PhotoRepository { get; }
+
+    public ICustomerBasketRepository CustomerBasket { get; }
 }
