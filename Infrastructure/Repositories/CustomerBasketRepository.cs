@@ -16,9 +16,9 @@ public class CustomerBasketRepository : ICustomerBasketRepository
     }
     public async Task<CustomerBasket> GetBasketAsync(string basketId)
     {
-        var result = await  _database.StringGetAsync(basketId);
-        if (!string.IsNullOrEmpty(result))
-        { 
+        var result = await _database.StringGetAsync(basketId);
+        if (result.HasValue)
+        {
             return JsonSerializer.Deserialize<CustomerBasket>(result);
         }
         return null;
