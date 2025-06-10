@@ -10,3 +10,9 @@ export class Basket implements IBasket {
     id = uuidv4(); // Generate a unique ID for the basket
     items: IBasketItem[] = [];
 }
+
+export interface IBasketTotal {
+  shipping: number;
+  subtotal: number;
+  total: number;
+}

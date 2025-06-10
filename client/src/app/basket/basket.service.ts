@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
-import { Basket, IBasket } from '../Shared/Moddels/Basket';
+import { Basket, IBasket, IBasketTotal } from '../Shared/Moddels/Basket';
 import { IProduct } from '../Shared/Moddels/Product';
 import { IBasketItem } from '../Shared/Moddels/BasketItem';
 
@@ -14,6 +14,21 @@ export class BasketService {
   BaseUrl = 'http://localhost:5108/api/';
   private basketSource = new BehaviorSubject<IBasket | null>(null);
   basket$ = this.basketSource.asObservable();
+
+  private basketSourCeTotal = new BehaviorSubject<IBasketTotal | null>(null);
+  basketTotal$= this.basketSourCeTotal.asObservable();
+
+  calculateTotal(){
+    const basket=this.GetCurrentValue();
+    const shipping =0;
+    const subtotal = basket?.items.reduce((sum, item) => {
+      return sum + (item.price * item.quantity);
+    }, 0) ?? 0;
+
+    const total = subtotal + shipping;
+    this.basketSourCeTotal.next({ shipping, subtotal, total });
+  }
+
 
   GetBasket(id: string) {
     return this.http
@@ -81,7 +96,7 @@ export class BasketService {
 
   private createBasket(): IBasket {
     const basket = new Basket();
-    console.log(basket);
+    console.log("basket id:"+basket.id);
     localStorage.setItem('basket_id', basket.id);
     return basket;
   }
