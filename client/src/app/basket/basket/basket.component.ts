@@ -30,7 +30,9 @@ export class BasketComponent implements OnInit {
       const item = this.basket.items.find((i) => i.id === itemId);
       if (item) {
         item.quantity = quantity;
+
         this._service.SetBasket(this.basket);
+        this._service.calculateTotal();
       }
     }
   }
@@ -42,6 +44,7 @@ export class BasketComponent implements OnInit {
       if(item){
         this.basket.items =this.basket.items.filter((i)=> i.id !== itemId);
         this._service.SetBasket(this.basket);
+        this._service.calculateTotal();
         console.log('Item removed from basket:', itemId);
       }
     }

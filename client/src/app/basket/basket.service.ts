@@ -29,6 +29,7 @@ export class BasketService {
     this.basketSourCeTotal.next({ shipping, subtotal, total });
   }
 
+  
 
   GetBasket(id: string) {
     return this.http
@@ -36,6 +37,7 @@ export class BasketService {
       .pipe(
         map((basket: IBasket) => {
           this.basketSource.next(basket);
+          this.calculateTotal();
           console.log('Basket retrieved successfully:', basket);
           return basket;
         })
