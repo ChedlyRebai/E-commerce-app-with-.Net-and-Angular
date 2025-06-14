@@ -15,4 +15,5 @@ public interface IUnitOfWork
     public IPhotoRepository PhotoRepository { get; }
 
     public ICustomerBasketRepository CustomerBasket { get; }
+    public IAuth Auth { get; }
 }

@@ -1,24 +1,32 @@
 using System;
 using AutoMapper;
+using Core.Entities;
 using Core.Interfaces;
 using Core.Services;
 using Infrastructure.Data;
 using Infrastructure.Repositories.Service;
+using Microsoft.AspNetCore.Identity;
 using StackExchange.Redis;
 namespace Infrastructure.Repositories;
+
 public class UnitOfWork : IUnitOfWork
 {
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
     private readonly IImageMangeService _imageMangeService;
     private readonly IConnectionMultiplexer _redis;
-    public ICategoryReppository CategoryReppository {get; }
-    public IProductRepository ProductRepository {get; }
-    public IPhotoRepository PhotoRepository {get; }
-    public ICustomerBasketRepository CustomerBasket {get; }
-    public UnitOfWork(AppDbContext context, IMapper mapper, IImageMangeService imageMangeService, IConnectionMultiplexer redis)
+    public ICategoryReppository CategoryReppository { get; }
+    public IProductRepository ProductRepository { get; }
+    public IPhotoRepository PhotoRepository { get; }
+    public ICustomerBasketRepository CustomerBasket { get; }
+
+    private readonly UserManager<AppUser> _userManager;
+
+    public IAuth Auth { get; }
+
+    public UnitOfWork(AppDbContext context, IMapper mapper, IImageMangeService imageMangeService, IConnectionMultiplexer redis, UserManager<AppUser> userManager)
     {
-        
+
         _mapper = mapper;
         _imageMangeService = imageMangeService;
         _context = context;
@@ -27,5 +35,7 @@ public class UnitOfWork : IUnitOfWork
         ProductRepository = new ProductRepository(_context, _mapper, _imageMangeService);
         PhotoRepository = new PhotoRepository(_context);
         CustomerBasket = new CustomerBasketRepository(_redis);
+        this._userManager = userManager;
+        Auth = new AuthRepository(_userManager);
     }
 }
