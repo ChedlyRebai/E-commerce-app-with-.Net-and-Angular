@@ -11,3 +11,5 @@ c:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\obj\Debug\net9.0\Cor
 c:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\obj\Debug\net9.0\refint\Core.dll
 c:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\obj\Debug\net9.0\Core.pdb
 c:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\obj\Debug\net9.0\ref\Core.dll
+C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\bin\Debug\net9.0\Core.runtimeconfig.json
+C:\Users\chedl\Desktop\e-commerce_with_angular_and_Net\Core\obj\Debug\net9.0\Core.genruntimeconfig.cache

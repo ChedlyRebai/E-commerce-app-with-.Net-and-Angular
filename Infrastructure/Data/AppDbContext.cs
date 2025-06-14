@@ -2,25 +2,33 @@ using System;
 using System.Reflection;
 using Core.Entities.Product;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Core.Entities;
 
 namespace Infrastructure.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 
-    public virtual DbSet<Category> Categories { get; set; } 
+    public virtual DbSet<Category> Categories { get; set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<Photo> Photos { get; set; }
+    public virtual DbSet<Address> Addresses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-         //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+        
+        modelBuilder.Entity<AppUser>()
+    .HasOne(u => u.Address)
+    .WithOne(a => a.AppUser)
+    .HasForeignKey<Address>(a => a.AppUserId);
+        
+        //modelBuilder.Entity<AppUser>().Ignore(u => u.Address);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
     }
-
-
 }
