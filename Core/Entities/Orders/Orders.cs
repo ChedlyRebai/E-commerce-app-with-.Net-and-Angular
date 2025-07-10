@@ -6,12 +6,12 @@ public class Orders : BaseEntity<int>
 
 
 {
-    public Orders(string buyerEmail, decimal subTotal, ShippingAddress shippingAddress, DeliveryMethod deliveryMethod,IReadOnlyList<OrderItem> orderItems,Status status)
+    public Orders(string buyerEmail, decimal subTotal, ShippingAddress shippingAddress, DeliveryMethod deliveryMethod,IReadOnlyList<OrderItem> orderItems)
     {
         BuyerEmail = buyerEmail;
         OrderDate = DateTime.Now;
         this.OrderItems = OrderItems;
-        this.status = status;
+     
         SubTotal = subTotal;
         this.shippingAddress = shippingAddress;
         this.deliveryMethod = deliveryMethod;

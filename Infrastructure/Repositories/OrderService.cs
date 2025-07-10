@@ -1,4 +1,5 @@
 using System;
+using AutoMapper;
 using Core.DTO;
 using Core.Entities.Orders;
 using Core.Interfaces;
@@ -12,6 +13,7 @@ public class OrderService : IOrderService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly AppDbContext _context;
+    private readonly IMapper _mapper;
     public OrderService(AppDbContext context, IUnitOfWork unitOfWork)
     {
         this._context = context;
@@ -47,8 +49,12 @@ public class OrderService : IOrderService
 
         var deliveryMethod = await _context.DeliveryMethods.FirstOrDefaultAsync(m => m.Id == orderDTO.deliveryMethodId);
         var subTotal = orderItems.Sum(item => item.Price * item.Quantity);
-        var shipAddre
-        var order = new Orders(buyerEmail, subTotal, deliveryMethod, orderItems);
+        var ship = _mapper.Map<ShippingAddress>(orderDTO.shippingAddress);
+        var order = new Orders(buyerEmail, subTotal, ship, deliveryMethod, orderItems);
+
+        await _context.Orders.AddAsync(order);
+        await _context.SaveChangesAsync();
+        return order;
     }
 
     public Task<IReadOnlyList<Orders>> GetAllOrdersAsync(string buyerEmail)
