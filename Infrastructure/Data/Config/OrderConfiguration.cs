@@ -15,6 +15,6 @@ public class OrderConfiguration : IEntityTypeConfiguration<Orders>
         builder.HasMany(x => x.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
         builder.Property(x => x.BuyerEmail).IsRequired();
         builder.Property(x => x.status).HasConversion(o => o.ToString(), o => (Status)Enum.Parse(typeof(Status), o));
-        
+        builder.Property(X=>X.SubTotal).HasColumnType("decimal(18,2)");
     }
 }

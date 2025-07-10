@@ -2,7 +2,7 @@ using System;
 
 namespace Core.Entities.Orders;
 
-public class OrderItem
+public class OrderItem:BaseEntity<int>
 {
 
     public OrderItem(int productItemId, string productName, string mainImage, decimal price, int quantity)
@@ -13,7 +13,7 @@ public class OrderItem
         Price = price;
         Quantity = quantity;
     }
-    
+
     public int ProductItemId { get; set; }
     public string ProductName { get; set; }
     public string MainImage { get; set; }

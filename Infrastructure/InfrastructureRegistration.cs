@@ -40,52 +40,52 @@ public static class InfrastructureRegistration
 
         // Register ASP.NET Core Identity with custom user and role types.
         // Use Entity Framework Core for persistence and add default token providers.
-     
+
         //An error occurred while accessing the Microsoft.Extensions.Hosting services. Continuing without the application service provider. Error: Some services are not able to be constructed (Error while validating the service descriptor 'ServiceType: Core.Interfaces.IUnitOfWork Lifetime: Scoped ImplementationType: Infrastructure.Repositories.UnitOfWork': Unable to resolve service for type 'Microsoft.Extensions.FileProviders.IFileProvider' while attempting to activate 'Infrastructure.Repositories.Service.ImageMangeService'.) (Error while validating the service descriptor 'ServiceType: Core.Services.IImageMangeService Lifetime: Singleton ImplementationType: Infrastructure.Repositories.Service.ImageMangeService': Unable to resolve service for type 'Microsoft.Extensions.FileProviders.IFileProvider' while attempting to activate 'Infrastructure.Repositories.Service.ImageMangeService'.)
         services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
         services.AddDbContext<AppDbContext>(options =>
         {
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
-         // Identity configuration
-            services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>()
-                .AddDefaultTokenProviders();
+        // Identity configuration
+        services.AddIdentity<AppUser, IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders();
 
-            // Configure Identity cookie
-            services.ConfigureApplicationCookie(options =>
+        // Configure Identity cookie
+        services.ConfigureApplicationCookie(options =>
+        {
+            options.Cookie.Name = "token";
+            options.Events.OnRedirectToLogin = context =>
             {
-                options.Cookie.Name = "token";
-                options.Events.OnRedirectToLogin = context =>
+                context.Response.StatusCode = 401;
+                return Task.CompletedTask;
+            };
+        });
+
+        // JWT Bearer authentication
+        services.AddAuthentication()
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    context.Response.StatusCode = 401;
-                    return Task.CompletedTask;
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Token:Secret"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                };
+                options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        context.Token = context.Request.Cookies["token"];
+                        return Task.CompletedTask;
+                    }
                 };
             });
-
-            // JWT Bearer authentication
-            services.AddAuthentication()
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.SaveToken = true;
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(configuration["Token:Secret"])),
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ClockSkew = TimeSpan.Zero
-                    };
-                    options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
-                    {
-                        OnMessageReceived = context =>
-                        {
-                            context.Token = context.Request.Cookies["token"];
-                            return Task.CompletedTask;
-                        }
-                    };
-                });
         return services;
     }
 }
