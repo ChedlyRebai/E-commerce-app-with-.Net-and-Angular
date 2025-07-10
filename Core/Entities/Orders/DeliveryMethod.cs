@@ -11,9 +11,10 @@ public class DeliveryMethod : BaseEntity<int>
         Price = price;
         DeliveryTime = deliveryTime;
     }
+    
     public DeliveryMethod()
     {
-        
+
     }
     public string Name { get; set; }
     public string Description { get; set; }

@@ -37,7 +37,7 @@ public static class InfrastructureRegistration
         services.AddScoped<IEmailService, EmailService>();
         services.AddSingleton<IImageMangeService, ImageMangeService>();
         services.AddScoped<IGenerateToken, GenrateToken>();
-
+        services.AddScoped<IOrderService,OrderService>();
         // Register ASP.NET Core Identity with custom user and role types.
         // Use Entity Framework Core for persistence and add default token providers.
 
