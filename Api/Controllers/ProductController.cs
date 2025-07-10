@@ -1,6 +1,5 @@
 using Api.Helper;
 using AutoMapper;
-using Azure.Identity;
 using Core.DTO;
 using Core.Entities.Product;
 using Core.Interfaces;

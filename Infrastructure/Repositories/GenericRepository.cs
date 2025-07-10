@@ -3,7 +3,6 @@ using System.Linq.Expressions;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace Infrastructure.Repositories;
 

@@ -22,9 +22,12 @@ public class UnitOfWork : IUnitOfWork
 
     private readonly UserManager<AppUser> _userManager;
 
+    private readonly IEmailService emailService;
+    private readonly SignInManager<AppUser> _signInManager;
+    private readonly IGenerateToken token;
     public IAuth Auth { get; }
 
-    public UnitOfWork(AppDbContext context, IMapper mapper, IImageMangeService imageMangeService, IConnectionMultiplexer redis, UserManager<AppUser> userManager)
+    public UnitOfWork(AppDbContext context, IMapper mapper, IImageMangeService imageMangeService, IConnectionMultiplexer redis, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IEmailService emailService = null, IGenerateToken token = null)
     {
 
         _mapper = mapper;
@@ -36,6 +39,9 @@ public class UnitOfWork : IUnitOfWork
         PhotoRepository = new PhotoRepository(_context);
         CustomerBasket = new CustomerBasketRepository(_redis);
         this._userManager = userManager;
-        Auth = new AuthRepository(_userManager);
+        Auth = new AuthRepository(_userManager, emailService, signInManager,token);
+        _signInManager = signInManager;
+        this.emailService = emailService;
+        this.token = token;
     }
 }

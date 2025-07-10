@@ -3,7 +3,6 @@ using System.Net;
 using System.Text.Json;
 using Api.Helper;
 using Microsoft.Extensions.Caching.Memory;
-using Org.BouncyCastle.Ocsp;
 
 namespace Api.Middleware;
 

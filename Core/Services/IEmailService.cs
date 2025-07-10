@@ -1,8 +1,9 @@
 using System;
+using Core.DTO;
 
 namespace Core.Services;
 
-public class IEmailService
+public interface IEmailService
 {
-
+    Task SendEmail(EmailDTO emailDTO);
 }

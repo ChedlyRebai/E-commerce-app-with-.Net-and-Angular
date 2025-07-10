@@ -9,11 +9,11 @@ public class PhotoConfiguration: IEntityTypeConfiguration<Photo>
 {
     public void Configure(EntityTypeBuilder<Photo> builder)
     {
-        builder.HasData(new Photo {
+       /* builder.HasData(new Photo {
             Id =1,
             ProductId = 1,
             Url = "https://example.com/photo1.jpg",
-        }); 
+        }); */
     }
 
 }

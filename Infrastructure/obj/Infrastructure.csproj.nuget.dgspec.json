@@ -1,30 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj": {}
+    "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj": {
+    "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj",
+        "projectUniqueName": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\chedl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\obj\\",
+        "projectPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj",
+        "packagesPath": "/home/msi/.nuget/packages/",
+        "outputPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\chedl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/msi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -38,11 +39,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "Microsoft.AspNetCore.Http.Abstractions": {
               "target": "Package",
@@ -50,33 +51,33 @@
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.Extensions.FileProviders.Abstractions": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
-            "MySql.EntityFrameworkCore": {
+            "Microsoft.IdentityModel.Logging": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -90,39 +91,50 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj": {
+    "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\chedl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Infrastructure\\obj\\",
+        "projectPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
+        "packagesPath": "/home/msi/.nuget/packages/",
+        "outputPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\chedl\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/msi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
+          "/usr/lib/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\chedl\\Desktop\\e-commerce_with_angular_and_Net\\Core\\Core.csproj"
+              "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj": {
+                "projectPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj"
               }
             }
           }
@@ -137,69 +149,73 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
               "version": "[12.0.1, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.11, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[9.0.6, )"
-            },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.Extensions.FileProviders.Abstractions": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.Extensions.FileProviders.Physical": {
               "target": "Package",
-              "version": "[9.0.3, )"
+              "version": "[8.0.1, )"
             },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
-              "version": "[9.0.6, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.2.0, )"
             },
-            "MySql.Data": {
+            "MimeKit": {
               "target": "Package",
-              "version": "[9.2.0, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[2.7.0, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[9.0.4, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[9.0.0-preview.3.efcore.9.0.0, )"
+              "version": "[8.0.11, )"
             },
             "StackExchange.Redis": {
               "target": "Package",
@@ -217,12 +233,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.17, 8.0.17]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

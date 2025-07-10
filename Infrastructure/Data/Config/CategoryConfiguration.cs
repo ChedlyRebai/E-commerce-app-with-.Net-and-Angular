@@ -11,13 +11,13 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
         builder.Property(x=>x.Id).IsRequired();
-          builder.HasData(
+        /*  builder.HasData(
             new Category
             {
                 Id = 2,
                 Name = "Category 1",
                 Description = "Description for Category 1"
             }
-        );  
+        );  */
     }
 }

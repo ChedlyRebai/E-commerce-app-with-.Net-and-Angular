@@ -12,15 +12,15 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(x => x.Description).IsRequired();
         builder.Property(x => x.NewPrice).IsRequired().HasColumnType("decimal(18,2)");
         builder.Property(x => x.OldPrice).IsRequired().HasColumnType("decimal(18,2)");
-        //  builder.HasData(
-        //     new Product{
-        //         Id = 1,
-        //         Name = "Product 1",
-        //         Description = "Description 1",
-        //         Price = 10000,
-        //         Stock = 10,
-        //         CategoryId = 2
-        //     }
-        // );
+          /*builder.HasData(
+             new Product{
+                 Id = 1,
+                 Name = "Product 1",
+                 Description = "Description 1",
+                 Price = 10000,
+                 Stock = 10,
+                 CategoryId = 2
+             }
+         );*/
     }
 }

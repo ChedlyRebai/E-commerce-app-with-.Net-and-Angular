@@ -14,7 +14,6 @@ import { OrderTotalComponent } from '../Shared/Component/order-total/order-total
   imports: [
     CommonModule,
     BasketRoutingModule,
-  
     SharedModule
   ]
 })
