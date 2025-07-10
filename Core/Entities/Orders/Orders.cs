@@ -16,9 +16,10 @@ public class Orders : BaseEntity<int>
         this.shippingAddress = shippingAddress;
         this.deliveryMethod = deliveryMethod;
     }
+
     public Orders()
     {
-        
+
     }
     public string BuyerEmail { get; set; }
     public decimal SubTotal { get; set; }
