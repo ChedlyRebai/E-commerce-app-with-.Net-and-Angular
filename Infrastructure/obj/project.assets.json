@@ -7664,19 +7664,19 @@
     ]
   },
   "packageFolders": {
-    "/home/msi/.nuget/packages/": {}
+    "/home/ubuntu/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
+      "projectUniqueName": "/home/ubuntu/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
-      "packagesPath": "/home/msi/.nuget/packages/",
-      "outputPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/obj/",
+      "projectPath": "/home/ubuntu/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/Infrastructure.csproj",
+      "packagesPath": "/home/ubuntu/.nuget/packages/",
+      "outputPath": "/home/ubuntu/Bureau/github/E-commerce-app-with-.Net-and-Angular/Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/msi/.nuget/NuGet/NuGet.Config"
+        "/home/ubuntu/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -7689,8 +7689,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj": {
-              "projectPath": "/home/msi/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj"
+            "/home/ubuntu/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj": {
+              "projectPath": "/home/ubuntu/Bureau/github/E-commerce-app-with-.Net-and-Angular/Core/Core.csproj"
             }
           }
         }
@@ -7792,11 +7792,11 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.17, 8.0.17]"
+            "version": "[8.0.18, 8.0.18]"
           }
         ],
         "frameworkReferences": {
@@ -7804,7 +7804,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.107/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.108/PortableRuntimeIdentifierGraph.json"
       }
     }
   },
